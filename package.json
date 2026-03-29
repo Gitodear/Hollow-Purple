@@ -1,0 +1,31 @@
+{
+  "name": "hollow-purple-handtracking",
+  "version": "1.0.0",
+  "description": "Interactive hand tracking visualization inspired by Jujutsu Kaisen's Hollow Purple technique",
+  "main": "index.html",
+  "author": "Abhim",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/hollow-purple-handtracking"
+  },
+  "keywords": [
+    "hand-tracking",
+    "3d graphics",
+    "three.js",
+    "mediapipe",
+    "jujutsu-kaisen",
+    "interactive"
+  ],
+  "scripts": {
+    "start": "Open index.html in your web browser"
+  },
+  "dependencies": {
+    "three": "r128",
+    "mediapipe": "@0.4.1675469240"
+  },
+  "devDependencies": {},
+  "engines": {
+    "browser": "latest"
+  }
+}

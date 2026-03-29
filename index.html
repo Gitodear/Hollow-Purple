@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虚式・茈 — Hollow Purple | Hand Tracking</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <h1>虚式・茈</h1>
+  <p>HOLLOW PURPLE — HAND TRACKING</p>
+  <button id="start-btn">ACTIVATE CAMERA</button>
+  <div id="loading-status"></div>
+</div>
+
+<!-- 3D Canvas -->
+<canvas id="three-canvas"></canvas>
+
+<!-- Webcam -->
+<video id="webcam" autoplay playsinline></video>
+<canvas id="hand-overlay" width="320" height="240"></canvas>
+
+<!-- Overlays -->
+<div id="vignette"></div>
+<div class="screen-lines"></div>
+<div id="flash-overlay"></div>
+
+<!-- HUD -->
+<div id="left-hand-status" class="hand-indicator">LEFT — BLUE ✋</div>
+<div id="right-hand-status" class="hand-indicator">RIGHT — RED ✋</div>
+
+<div id="distance-bar"><div id="distance-fill"></div></div>
+<div id="distance-label">PROXIMITY</div>
+
+<div id="pose-guide">RAISE BOTH HANDS · PUSH TOGETHER TO FUSE · PUSH FORWARD TO FIRE</div>
+
+<div id="hud">
+  <div class="phase" id="phase-text"></div>
+  <div class="sub" id="hud-sub">HAND TRACKING ACTIVE</div>
+</div>
+
+<!-- External Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.min.js"></script>
+
+<!-- Application Scripts -->
+<script src="js/config.js"></script>
+<script src="js/shaders.js"></script>
+<script src="js/particle-system.js"></script>
+<script src="js/energy-orb.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/hand-tracker.js"></script>
+<script src="js/fusion-system.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

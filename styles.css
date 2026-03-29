@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  user-select: none;
+}
+
+canvas#three-canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Webcam feed - mirrored, bottom corner */
+video#webcam {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 240px;
+  height: 180px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 100;
+  transform: scaleX(-1);
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+canvas#hand-overlay {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 240px;
+  height: 180px;
+  border-radius: 12px;
+  z-index: 101;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+#flash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  mix-blend-mode: screen;
+}
+
+#vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.screen-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* HUD */
+#hud {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  z-index: 100;
+  text-align: center;
+  line-height: 1.8;
+  pointer-events: none;
+}
+
+#hud .phase {
+  font-size: 16px;
+  color: rgba(180,120,255,0.7);
+  letter-spacing: 6px;
+  margin-bottom: 6px;
+  min-height: 24px;
+  text-shadow: 0 0 20px rgba(130,60,255,0.5);
+}
+
+#hud .sub {
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+/* Hand indicators */
+.hand-indicator {
+  position: fixed;
+  top: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 100;
+  pointer-events: none;
+  transition: opacity 0.3s, background 0.3s;
+}
+
+#left-hand-status {
+  left: 20px;
+  background: rgba(30,60,200,0.2);
+  border: 1px solid rgba(60,100,255,0.3);
+  color: rgba(100,150,255,0.8);
+}
+
+#right-hand-status {
+  right: 280px;
+  background: rgba(200,30,40,0.2);
+  border: 1px solid rgba(255,60,60,0.3);
+  color: rgba(255,100,100,0.8);
+}
+
+.hand-indicator.active {
+  background: rgba(100,50,255,0.3);
+  border-color: rgba(150,100,255,0.5);
+}
+
+/* Distance meter */
+#distance-bar {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 200px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  z-index: 100;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#distance-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(0deg, #4466ff, #aa44ff, #ff4466);
+  border-radius: 2px;
+  transition: height 0.15s ease;
+  box-shadow: 0 0 10px rgba(170,68,255,0.5);
+}
+
+#distance-label {
+  position: fixed;
+  top: calc(50% + 115px);
+  left: 10px;
+  color: rgba(255,255,255,0.25);
+  font-size: 8px;
+  letter-spacing: 2px;
+  z-index: 100;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+/* Loading / permission screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading-screen h1 {
+  font-family: 'Courier New', monospace;
+  color: rgba(180,120,255,0.8);
+  font-size: 28px;
+  letter-spacing: 12px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 30px rgba(130,60,255,0.4);
+}
+
+#loading-screen p {
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+#start-btn {
+  padding: 14px 40px;
+  background: rgba(130,60,255,0.15);
+  border: 1px solid rgba(130,60,255,0.4);
+  color: rgba(200,160,255,0.9);
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+#start-btn:hover {
+  background: rgba(130,60,255,0.3);
+  border-color: rgba(130,60,255,0.7);
+  box-shadow: 0 0 30px rgba(130,60,255,0.3);
+}
+
+#loading-status {
+  color: rgba(255,255,255,0.3);
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  min-height: 16px;
+}
+
+/* Gojo pose guide */
+#pose-guide {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.25);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  z-index: 100;
+  pointer-events: none;
+  text-align: center;
+  transition: opacity 0.5s;
+}
