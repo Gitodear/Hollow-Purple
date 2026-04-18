@@ -1,3 +1,4 @@
+LIVE DEMO: [ https://hollow-purple-tau.vercel.app/ ]
 # 虚式・茈 — Hollow Purple | Hand Tracking Experience
 
 An interactive, real-time hand tracking visualization inspired by Jujutsu Kaisen's "Hollow Purple" technique. This project uses Three.js for 3D rendering and MediaPipe for hand detection to create a stunning visual experience where both hands control blue and red energy orbs that fuse into a powerful purple blast.
