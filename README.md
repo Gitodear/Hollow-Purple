@@ -198,7 +198,7 @@ CONFIG = {
 - Inspired by Jujutsu Kaisen's "Hollow Purple" technique
 - Hand tracking powered by [MediaPipe](https://mediapipe.dev/)
 - 3D rendering with [Three.js](https://threejs.org/)
-- Original HTML by Abhim
+- Original HTML by Tamaterkun
 
 ## License
 
