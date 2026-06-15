@@ -21,8 +21,7 @@
     "start": "Open index.html in your web browser"
   },
   "dependencies": {
-    "three": "r128",
-    "mediapipe": "@0.4.1675469240"
+    "three": "r128"
   },
   "devDependencies": {},
   "engines": {
